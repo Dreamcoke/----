@@ -1,0 +1,32 @@
+
+/* pages/login/login.wxss */
+form{
+  width: 310px;
+  height: 240px;
+  line-height: 40px;
+  /* border: 1px solid red;  */
+}
+input{
+  border: 1px solid #ccc;
+  width: 310px;
+  height: 40px;
+}
+.input{
+  margin-top: 20px;
+  background-color: pink;
+}
+.header text{
+  font-size: 25px;
+  color: #666;
+}
+form text{
+  font-size: 20px;
+  color: #666;
+}
+.fpwd{
+  margin-top: 200px;
+}
+.fpwd text{
+  color: #ccc;
+  font-size: 18px;
+}

@@ -1,0 +1,11 @@
+<!--logs.wxml-->
+<!--
+  <block wx:for="{{logs}}" wx:for-item="log">
+    <text class="log-item">{{index + 1}}. {{id}}</text>
+  </block>
+  -->
+  <form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="container log-list">
+  <text>{{id}}</text>
+</view>
+</form>

@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="input">
+    <button  bindtap="check_identity" type='warn'> 录入身份信息 </button>
+    <button bindtap="check_history" type='primary'> 查看历史信息 </button>
+</view>
