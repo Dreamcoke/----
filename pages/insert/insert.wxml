@@ -1,5 +1,16 @@
 <!--index.wxml-->
 <view class="input">
-    <button  bindtap="check_identity" type='warn'> 录入身份信息 </button>
-    <button bindtap="check_history" type='primary'> 查看历史信息 </button>
+    <button  bindtap="check_identity" type='primary'> 录入身份信息 </button>
+    <button bindtap="check_history" type='default'> 查看历史信息 </button>
+    <button bindtap="close_lock" type='primary'> 远程开锁 </button>
 </view>
+<view class="item">
+        灯光控制：{{state}}<switch type="switch" checked bindchange="switchChange" />
+</view>
+<view class="tem">
+        温度：{{tem}}°C   湿度：{{hum}}%RH
+</view>
+<button bindtap="echarts">折线图</button>
+
+
+

@@ -19,8 +19,21 @@ Page({
           'content-type': 'application/json'
       },
       success: function (res) {
-        wx.redirectTo({ url: '/pages/insert/insert' }) 
-        console.log(res.data);// 服务器回包信息
+        if(res.data=='有此用户')
+          wx.redirectTo({ url: '/pages/insert/insert' }) 
+        else{
+          wx.showModal({
+            title: '提示',
+            content: '账号或密码错误',
+            success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        }
 
       }
     })

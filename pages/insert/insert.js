@@ -3,10 +3,38 @@
 const app = getApp()
 Page({
   data: {
-   
+    state: '关闭'
     
   },
+  onLoad: function () {
+    var that = this
+    wx.request({
+      url: 'https://localhost/tem_hum.php',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      success: function (e) {
+        that.setData({
+          tem: e.data.temperature,
+          hum:e.data.humidity
+        })
+        console.log(e.data)
+        // console.log(e.data)
+      }
+    })
+  },
+  echarts:function(){
+      wx.navigateTo({
+        url: '/pages/line/index',
+      })
+  },
+  check_history:function(){
+    wx.navigateTo({
+      url: '/pages/data/data',
+    })
+  },
   check_identity: function (e) {
+    var that = this
      wx.request({
        url: 'https://localhost/check.php',
        method: 'GET',
@@ -20,8 +48,10 @@ Page({
        success: function (res) {
          
           if(res.data)
-          //console.log(res)
-            wx.navigateTo({ url: '/pages/logs/logs?id=1'}) 
+          {
+            //console.log(res.data),
+            wx.navigateTo({ url: '/pages/logs/logs?namelist='+JSON.stringify(res.data)}) 
+          }
           else
           {
             wx.showModal({
@@ -39,49 +69,71 @@ Page({
        }
      })
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  clickme(){
-      this.setData({msg:'hello world'})
-  },
-  onLoad: function (option) {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+  close_lock:function(){
+    wx.showModal({
+      title: '提示',
+      content: '确定要开锁吗',
+      success(res) {
+        if (res.confirm) {
+          console.log('开锁')
+          wx.request({
+            url: 'https://localhost/close.php',
+            method: 'GET',
+            data: {
+              flag: 'close'
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+             // console.log(res.data)
+            }
           })
+        } else if (res.cancel) {
+          console.log('取消')
+        }
+      }
+    })
+   
+     
+  },
+  switchChange: function (e) {
+    //console.log(e.detail.value)
+    if (e.detail.value) {
+      this.setData({ state: '打开' })
+      console.log("开灯")
+      wx.request({
+        url: 'https://localhost/light.php?state1=open',
+        method: 'GET',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          //console.log(res.data)
         }
       })
     }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    else
+    {
+      this.setData({ state: '关闭' })
+      console.log("关灯")
+      wx.request({
+        url: 'https://localhost/light.php?state1=close',
+        method: 'GET',
+        data: {
+
+        },
+
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function (res) {
+          //console.log(res.data)
+        }
+      })
+    }
+     
+    
   }
+
 })

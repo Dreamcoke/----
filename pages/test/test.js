@@ -1,11 +1,15 @@
-// pages/wxml/index.js
+// pages/test/test.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    time: (new Date()).toString(),
+    array: [{
+      message: 'foo',
+    }, {
+      message: 'bar'
+    }]
   },
 
   /**

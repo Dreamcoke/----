@@ -4,8 +4,18 @@
     <text class="log-item">{{index + 1}}. {{id}}</text>
   </block>
   -->
+  <block wx:for="{{list}}" wx:key="{{code}}">
   <form bindsubmit="formSubmit" bindreset="formReset">
-  <view class="container log-list">
-  <text>{{id}}</text>
-</view>
+   <view class="page-section">
+    <view class="weui-cells__title">ID：{{item.id}}  您的姓名为：{{name}}</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input"  maxlength="10" bindinput="bindKeyInput"  placeholder="输入您的姓名" name="name"/>
+      </view>
+    </view>
+  </view>
+   <view class='button'>
+      <button type='primary' form-type='submit' >上传</button>
+    </view>
 </form>
+ </block>

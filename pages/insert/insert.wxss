@@ -13,7 +13,7 @@ input{
 }
 .input{
   margin-top: 20px;
-  background-color: pink;
+  background-color: white;
 }
 .header text{
   font-size: 25px;
@@ -30,3 +30,22 @@ form text{
   color: #ccc;
   font-size: 18px;
 }
+.item{
+    background-color: #ffffff;
+    padding: 10px;
+    line-height: 30px;
+    border: 1px solid white;
+}
+.tem{
+    background-color: #ffffff;
+    padding: 10px;
+    line-height: 25px;
+    border: 1px solid white;
+    color: #000000;
+    text-align: center;
+    font-size: 1.1em;
+}
+switch{
+    float: right
+}
+button {margin: 10px;}

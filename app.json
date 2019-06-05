@@ -2,8 +2,10 @@
   "pages": [
     "pages/login/login",
     "pages/insert/insert",
+    "pages/line/index",
+    "pages/data/data",
     "pages/logs/logs",
-    "pages/wxml/index" 
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "light",

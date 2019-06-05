@@ -1,6 +1,0 @@
-<!--pages/wxml/index.wxml-->
-<!--
-{ a:10 }
--->
-<text>当前时间：{{time}}</text>
-<text>{{a==10?"变量a=10":"变量a不等于10"}}</text>
